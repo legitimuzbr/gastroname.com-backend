@@ -11,4 +11,9 @@ app.use("/files", express.static("uploads"))
 
 app.use(router);
 
-app.listen(8800);
+
+// Use PORT provided in environment or default to 3000
+const port = process.env.PORT || 3000;
+
+// Listen on `port` and 0.0.0.0
+app.listen(port, "0.0.0.0");
