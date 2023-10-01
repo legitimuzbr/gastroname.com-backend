@@ -19,7 +19,7 @@ class ItemController {
         }
       }
     })
-    
+
 
     return res.json(items)
 
@@ -31,7 +31,7 @@ class ItemController {
       data: {
         title: req.body.title,
         description: req.body.description,
-        image: "http://localhost:8800/files/" + req.file.filename,
+        image: "https://api.gastroname.com/files/" + req.file.filename,
         userId: parseInt(req.body.userId),
         price: parseFloat(req.body.price),
       }
