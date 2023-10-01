@@ -19,6 +19,7 @@ class ItemController {
         }
       }
     })
+    
 
     return res.json(items)
 
