@@ -22,8 +22,11 @@ router.post("/addUser", userController.add);
 
 router.get("/getItemsByUserId", itemController.getItemsByUserId);
 
+router.get("/getCategoriesByUserId", categoryController.getCategoriesByUserId)
+
 router.post("/addItem", upload.single("image"), itemController.add);
 
 router.post("/addCategory", categoryController.add);
+
 
 export default router;

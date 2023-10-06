@@ -19,6 +19,23 @@ class CategoryController {
     return res.json(newCategory)
   }
 
+
+  async getCategoriesByUserId(req, res) {
+
+    const user = req.query
+
+    const categories = await db.category.findMany({
+      where: {
+        userId: {
+          equals: parseInt(user.id)
+        }
+      }
+    })
+
+    return res.json(categories)
+
+  }
+
 }
 
 export default CategoryController;
