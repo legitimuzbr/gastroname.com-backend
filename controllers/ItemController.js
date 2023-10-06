@@ -20,7 +20,6 @@ class ItemController {
       }
     })
 
-
     return res.json(items)
 
   }
@@ -33,6 +32,7 @@ class ItemController {
         description: req.body.description,
         image: "https://api.gastroname.com/files/" + req.file.filename,
         userId: parseInt(req.body.userId),
+        categoryId: parseInt(req.body.categoryId),
         price: parseFloat(req.body.price),
       }
     })
