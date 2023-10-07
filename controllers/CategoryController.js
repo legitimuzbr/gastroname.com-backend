@@ -4,52 +4,51 @@ const db = new PrismaClient()
 
 class CategoryController {
   
-  constructor () {
-
-  }
-
+  constructor() {}
 
   async add(req, res) {
-    const newCategory = await db.category.create({
-      data: {
-        name: req.body.name,
-        userId: parseInt(req.body.userId)
-      }
-    })
-    return res.json(newCategory)
+    try {
+      const newCategory = await db.category.create({
+        data: {
+          name: req.body.name,
+          userId: parseInt(req.body.userId)
+        }
+      })
+      return res.status(201).json({ message: 'Category added successfully', data: newCategory });
+    } catch (error) {
+      return res.status(500).json({ message: 'Error adding category', error: error.message });
+    }
   }
 
-
   async getCategoriesByUserId(req, res) {
-
-    const user = req.query
-
-    const categories = await db.category.findMany({
-      where: {
-        userId: {
-          equals: parseInt(user.id)
+    try {
+      const user = req.query;
+      const categories = await db.category.findMany({
+        where: {
+          userId: {
+            equals: parseInt(user.id)
+          }
         }
-      }
-    })
-
-    return res.json(categories)
-
+      })
+      return res.status(200).json(categories);
+    } catch (error) {
+      return res.status(500).json({ message: 'Error fetching categories', error: error.message });
+    }
   }
 
   async delete(req, res) {
-
-    const category = req.params;
-
-     await db.category.delete({
-          where: {
-            id: parseInt(category.id)
+    try {
+      const category = req.params;
+      await db.category.delete({
+        where: {
+          id: parseInt(category.id)
         }
       });
-
-      return res.json({ message: 'Category deleted successfully' })
-
+      return res.status(200).json({ message: 'Category deleted successfully' });
+    } catch (error) {
+      return res.status(500).json({ message: 'Error deleting category', error: error.message });
+    }
   }
-
 }
 
 export default CategoryController;
