@@ -28,5 +28,6 @@ router.post("/addItem", upload.single("image"), itemController.add);
 
 router.post("/addCategory", categoryController.add);
 
+router.delete("/deleteCategory/:id", categoryController.delete)
 
 export default router;
