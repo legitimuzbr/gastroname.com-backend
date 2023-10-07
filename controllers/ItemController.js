@@ -3,42 +3,45 @@ import { PrismaClient } from '@prisma/client'
 const db = new PrismaClient()
 
 class ItemController {
-  
-  constructor() {}
+  constructor() {
+
+  }
+
 
   async getItemsByUserId(req, res) {
-    try {
-      const user = req.query;
-      const items = await db.item.findMany({
-        where: {
-          userId: {
-            equals: parseInt(user.id)
-          }
+
+    const user = req.query
+
+    const items = await db.item.findMany({
+      where: {
+        userId: {
+          equals: parseInt(user.id)
         }
-      });
-      return res.status(200).json({ message: 'Items fetched successfully', data: items });
-    } catch (error) {
-      return res.status(500).json({ message: 'Error fetching items', error: error.message });
-    }
+      }
+    })
+
+    return res.json(items)
+
   }
 
   async add(req, res) {
-    try {
-      const newItem = await db.item.create({
-        data: {
-          title: req.body.title,
-          description: req.body.description,
-          image: "https://api.gastroname.com/files/" + req.file.filename,
-          userId: parseInt(req.body.userId),
-          categoryId: parseInt(req.body.categoryId),
-          price: parseFloat(req.body.price),
-        }
-      });
-      return res.status(201).json({ message: 'Item added successfully', data: newItem });
-    } catch (error) {
-      return res.status(500).json({ message: 'Error adding item', error: error.message });
-    }
+    
+    const newItem = await db.item.create({
+      data: {
+        title: req.body.title,
+        description: req.body.description,
+        image: "https://api.gastroname.com/files/" + req.file.filename,
+        userId: parseInt(req.body.userId),
+        categoryId: parseInt(req.body.categoryId),
+        price: parseFloat(req.body.price),
+      }
+    })
+
+    return res.json(newItem)
+
   }
+
+
 }
 
-export default ItemController;
+export default ItemController
