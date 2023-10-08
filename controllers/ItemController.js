@@ -39,6 +39,21 @@ class ItemController {
       return res.status(500).json({ message: 'Error adding item', error: error.message });
     }
   }
+
+  async delete(req, res) {
+    try {
+      const item = req.params;
+      await db.item.delete({
+        where: {
+          id: parseInt(item.id)
+        }
+      });
+      return res.status(200).json({ message: 'Item deleted successfully' });
+    } catch (error) {
+      return res.status(500).json({ message: 'Error deleting item', error: error.message });
+    }
+  }
+
 }
 
 export default ItemController;

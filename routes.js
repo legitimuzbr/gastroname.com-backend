@@ -30,4 +30,6 @@ router.post("/addCategory", categoryController.add);
 
 router.delete("/deleteCategory/:id", categoryController.delete)
 
+router.delete("/deleteItem/:id", itemController.delete)
+
 export default router;
