@@ -11,7 +11,7 @@ class CategoryController {
       const newCategory = await db.category.create({
         data: {
           name: req.body.name,
-          userId: parseInt(req.body.userId)
+          userId: req.body.userId
         }
       })
       return res.status(201).json({ message: 'Category added successfully', data: newCategory });
