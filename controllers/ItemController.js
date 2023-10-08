@@ -12,7 +12,7 @@ class ItemController {
       const items = await db.item.findMany({
         where: {
           userId: {
-            equals: parseInt(user.id)
+            equals: user.id
           }
         }
       });
