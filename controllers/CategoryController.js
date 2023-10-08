@@ -26,7 +26,7 @@ class CategoryController {
       const categories = await db.category.findMany({
         where: {
           userId: {
-            equals: parseInt(user.id)
+            equals: user.id
           }
         }
       })

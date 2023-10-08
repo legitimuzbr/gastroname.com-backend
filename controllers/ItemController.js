@@ -45,7 +45,7 @@ class ItemController {
       const item = req.params;
       await db.item.delete({
         where: {
-          id: parseInt(item.id)
+          id: item.id
         }
       });
       return res.status(200).json({ message: 'Item deleted successfully' });

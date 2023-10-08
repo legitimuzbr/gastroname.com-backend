@@ -24,7 +24,7 @@ router.get("/getItemsByUserId", itemController.getItemsByUserId);
 
 router.get("/getCategoriesByUserId", categoryController.getCategoriesByUserId)
 
-router.post("/addItem", upload.single("image"), itemController.add);
+router.post("/addItem", upload.single("image"), itemController.add.bind(userController));
 
 router.post("/addCategory", categoryController.add);
 
